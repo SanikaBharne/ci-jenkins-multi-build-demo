@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="newsflow-ci-demo" default="build" basedir=".">
+  <property name="build.dir" value="ant-build"/>
+  <property name="classes.dir" value="${build.dir}/classes"/>
+  <property name="test.classes.dir" value="${build.dir}/test-classes"/>
+  <property name="dist.dir" value="${build.dir}/dist"/>
+  <property name="jar.name" value="newsflow-ci-demo-1.0.0.jar"/>
+
+  <target name="clean"><delete dir="${build.dir}"/></target>
+
+  <target name="compile">
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="src/main/java" destdir="${classes.dir}" includeantruntime="false" release="21"/>
+  </target>
+
+  <target name="test" depends="compile">
+    <mkdir dir="${test.classes.dir}"/>
+    <javac srcdir="src/test/java" destdir="${test.classes.dir}" classpath="${classes.dir}" includeantruntime="false" release="21"/>
+    <java classname="com.vit.newsflow.NewsWorkflowTest" fork="true" failonerror="true">
+      <classpath><pathelement location="${classes.dir}"/><pathelement location="${test.classes.dir}"/></classpath>
+    </java>
+  </target>
+
+  <target name="jar" depends="test">
+    <mkdir dir="${dist.dir}"/>
+    <jar destfile="${dist.dir}/${jar.name}" basedir="${classes.dir}">
+      <manifest><attribute name="Main-Class" value="com.vit.newsflow.App"/></manifest>
+    </jar>
+  </target>
+
+  <target name="build" depends="clean,jar">
+    <echo message="ANT BUILD SUCCESSFUL"/>
+  </target>
+</project>

@@ -1,0 +1,7 @@
+target/
+ant-build/
+build/
+.gradle/
+site-output/
+staging/
+production/
