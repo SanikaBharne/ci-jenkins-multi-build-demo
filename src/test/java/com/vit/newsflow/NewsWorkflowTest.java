@@ -26,7 +26,7 @@ public class NewsWorkflowTest {
         ArticleValidator v = new ArticleValidator();
         NewsWorkflowService svc = new NewsWorkflowService();
 
-        check("valid article has no errors", !v.validate(good()).isEmpty());
+        check("valid article has no errors", v.validate(good()).isEmpty());
         check("missing title fails", !v.validate(new Article("", "a-b", "X", words(30), null, null)).isEmpty());
         check("bad slug fails", !v.validate(new Article("T", "Bad Slug", "X", words(30), null, null)).isEmpty());
         check("image without alt text fails", !v.validate(new Article("T", "a-b", "X", words(30), "i.jpg", "")).isEmpty());
