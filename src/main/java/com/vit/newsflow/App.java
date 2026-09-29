@@ -6,7 +6,15 @@ import java.nio.file.Path;
 public class App {
     public static void main(String[] args) throws Exception {
         NewsWorkflowService svc = new NewsWorkflowService();
+<<<<<<< HEAD
         System.out.println("News Publishing CI/CD demo is running.");
+=======
+<<<<<<< HEAD
+        System.out.println("News Publishing CI/CD demo is running. Hellooo");
+=======
+        System.out.println("News Publishing CI/CD demo is running.HELLO WORLD");
+>>>>>>> 0996c60 (Update message)
+>>>>>>> eb2a970 (Update message)
 
         Article bad = new Article("", "Bad Slug", "Asha Rao", "too short", "img.jpg", "");
         svc.submit(bad);
